@@ -1,0 +1,50 @@
+name: Terraform Deployment
+
+# Trigger the workflow on push to the main branch
+on:
+  push:
+    branches:
+      - main
+
+# Define the jobs that will run in the workflow
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Google Cloud authentication
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ""
+
+      # Step 3: Set up Terraform
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_wrapper: false
+
+      # Step 4: Initialize Terraform
+      - name: Initialize Terraform
+        run: terraform init
+
+      # Step 5: Validate Terraform configuration
+      - name: Validate Terraform
+        run: terraform validate
+
+      # Step 6: Generate Terraform plan
+      - name: Terraform Plan
+        run: terraform plan -no-color -out=tfplan
+
+      # Step 7: Apply Terraform changes (only if it's a push event to main)
+      - name: Terraform Apply
+        if: github.event_name == 'push'
+        run: terraform apply -auto-approve 
+
+      # Step 8: Error handling and notification (example with simple logging)
+      - name: Notify on failure
+        if: failure()
+        run: echo "Deployment failed. Check the logs for details."

@@ -1,0 +1,47 @@
+[
+    {
+      "description": "Data Submission Id",
+      "name": "SubmissionId",
+      "type": "STRING"
+    },
+    {
+      "description": "Document File type",
+      "name": "MimeType",
+      "type": "STRING"
+    },
+    {
+      "description": "Document Type such as Aadhaar Card, Passport, Pan Card, Voter Id Card",
+      "name": "DocumentType",
+      "type": "STRING"
+    },
+    {
+      "description": "Identity Number",
+      "name": "IdentityNumber",
+      "type": "STRING"
+    },
+    {
+      "description": "Name",
+      "name": "Name",
+      "type": "STRING"
+    },
+    {
+      "description": "Date of Birth",
+      "name": "DateOfBirth",
+      "type": "DATE"
+    },
+    {
+        "description": "Gender",
+        "name": "Gender",
+        "type": "STRING"
+    },
+    {
+        "description": "Father's Name",
+        "name": "FatherName",
+        "type": "STRING"
+    },
+    {
+        "description": "Mother's Name",
+        "name": "MotherName",
+        "type": "STRING"
+    }
+  ]
